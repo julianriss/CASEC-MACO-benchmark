@@ -22,7 +22,7 @@ RUN curl -sk https://raw.githubusercontent.com/torch/distro/master/install-deps 
 RUN apt-get update
 RUN apt-get -y install python3
 RUN apt-get -y install python3-pip
-RUN pip3 install --upgrade pip
+RUN pip3 install --upgrade "pip < 21.0"
 
 # Python packages we use (or used at one point...)
 RUN pip3 install numpy scipy pyyaml matplotlib
@@ -36,7 +36,7 @@ WORKDIR /install
 RUN pip3 install jsonpickle==0.9.6
 # install Sacred (from OxWhirl fork)
 RUN pip3 install setuptools
-RUN git clone https://github.com/oxwhirl/sacred.git /install/sacred && cd /install/sacred && python3 setup.py install
+RUN git clone https://github.com/oxwhirl/sacred.git /install/sacred && cd /install/sacred && pip3 install -r requirements.txt
 
 #### -------------------------------------------------------------------
 #### install pytorch
